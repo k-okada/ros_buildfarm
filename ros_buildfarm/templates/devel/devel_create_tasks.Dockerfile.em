@@ -32,6 +32,9 @@ RUN useradd -u @uid -m buildfarm
     wrapper_scripts=wrapper_scripts,
 ))@
 
+RUN apt-get install -y apt-cacher-ng
+RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/02proxy.conf
+
 # automatic invalidation once every day
 RUN echo "@today_str"
 
