@@ -222,6 +222,8 @@ if pull_request:
         ' -v $WORKSPACE/ros_buildfarm:/tmp/ros_buildfarm:ro' +
         ' -v $WORKSPACE/ws:/tmp/ws' +
         ' -v ~/.ccache:/home/buildfarm/.ccache' +
+        ' -e=DISPLAY=$DISPLAY' +
+        ' -v /tmp/.X11-unix:/tmp/.X11-unix' +
         ' devel_build_and_test.%s_%s' % (rosdistro_name, source_repo_spec.name.lower()),
         'cd -',  # restore pwd when used in scripts
         'echo "# END SECTION"',
