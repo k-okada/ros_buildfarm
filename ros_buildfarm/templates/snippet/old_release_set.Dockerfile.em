@@ -1,4 +1,4 @@
 @[if os_name == 'ubuntu' and os_code_name in ['saucy', 'utopic', 'vivid', 'wily', 'yakkety', 'zesty']]@
 RUN find /etc/apt/ -name *.list -exec sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com/g' {} \;
 @[end if]@
-RUN find /etc/apt/ -name *.list -exec sed -i -e 's@//archive.ubuntu.com@//us-east-1.ec2.archive.ubuntu.com@g' {} \;
+RUN find /etc/apt/ -name *.list -exec sed -i -e 's#//archive.ubuntu.com#//us-east-1.ec2.archive.ubuntu.com#g' {} \;
