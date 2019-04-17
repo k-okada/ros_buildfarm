@@ -141,8 +141,8 @@ def main(argv=sys.argv[1:]):
     debian_pkg_names_testing -= set(debian_pkg_names)
     debian_pkg_versions.update(
         get_binary_package_versions(apt_cache, debian_pkg_names_testing))
-    if args.testing:
-        debian_pkg_names += order_dependencies(debian_pkg_names_testing)
+    # if args.testing:
+    #     debian_pkg_names += order_dependencies(debian_pkg_names_testing)
 
     # generate Dockerfile
     data = {
@@ -165,6 +165,7 @@ def main(argv=sys.argv[1:]):
         'build_environment_variables': args.env_vars,
 
         'dependencies': debian_pkg_names,
+        'dependencies_testing': debian_pkg_names_testing if args.testing else None,
         'dependency_versions': debian_pkg_versions,
         'install_lists': [],
 
