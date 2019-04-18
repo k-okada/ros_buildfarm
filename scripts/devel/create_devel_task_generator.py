@@ -165,13 +165,15 @@ def main(argv=sys.argv[1:]):
         'build_environment_variables': args.env_vars,
 
         'dependencies': debian_pkg_names,
-        'dependencies_testing': debian_pkg_names_testing if args.testing else None,
+        'dependencies_testing': list(debian_pkg_names_testing) if args.testing else None,
         'dependency_versions': debian_pkg_versions,
         'install_lists': [],
 
         'testing': args.testing,
         'prerelease_overlay': len(args.workspace_root) > 1,
     }
+    print(debian_pkg_names)
+    print(debian_pkg_names_testing)
     create_dockerfile(
         'devel/devel_task.Dockerfile.em', data, args.dockerfile_dir)
 

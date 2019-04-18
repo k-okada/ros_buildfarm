@@ -75,12 +75,15 @@ RUN python3 -u /tmp/wrapper_scripts/apt.py update-install-clean -q -y ccache
     dependency_versions=dependency_versions,
 ))@
 
-if dependencies_testing:
-    @(TEMPLATE(
+# testing
+@{
+if testing:
+    (TEMPLATE(
         'snippet/install_dependencies.Dockerfile.em',
         dependencies=dependencies_testing,
         dependency_versions=dependency_versions,
-    ))@
+    ))
+}@
 
 @(TEMPLATE(
     'snippet/install_dependencies_from_file.Dockerfile.em',
